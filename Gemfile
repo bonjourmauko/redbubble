@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
+  gem 'coveralls'
   gem 'rubocop', '~> 0.30'
   gem 'rubocop-rspec'
   gem 'guard'
