@@ -13,3 +13,8 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+
+script: 'bundle exec rake'
+
+notifications:
+  email: false
