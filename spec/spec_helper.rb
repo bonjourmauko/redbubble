@@ -8,6 +8,10 @@ require 'rubygems'
 require 'bundler'
 Bundler.setup :default, :test
 
+Dir[File.expand_path('spec/support/**/*.rb')].each { |f| require f }
+
+require 'redbubble'
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

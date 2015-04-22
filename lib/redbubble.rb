@@ -1,5 +1,10 @@
-require 'redbubble/version'
+require 'active_support/dependencies/autoload'
 
 module Redbubble
-  # Your code goes here...
+  extend ActiveSupport::Autoload
+
+  eager_autoload do
+    autoload :CLI
+    autoload :Version
+  end
 end

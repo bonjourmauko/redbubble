@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['maukoquiroga']
   spec.email         = ['maukoquiroga@gmail.com']
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Creates browsable HTML files from a XML file containing RedBubble's works.}
   spec.homepage      = 'https://github.com/maukoquiroga/redbubble'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -26,6 +25,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'activesupport', '~> 4.2'
+  spec.add_runtime_dependency 'thor', '~> 0.19.1'
+
+  spec.add_development_dependency 'aruba'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.2'
