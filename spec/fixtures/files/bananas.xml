@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<bananas>
+  <banana>
+    <origin>Martinique</origin>
+  </banana>
+  <banana>
+    <origin>Equator</origin>
+  </banana>
+</bananas>

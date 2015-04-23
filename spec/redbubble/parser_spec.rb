@@ -12,12 +12,16 @@ describe Redbubble::Parser do
       it { expect(array.first['exif']).to include('model') }
     end
 
+    context 'invalid xml file' do
+      let(:filepath) { file('bananas.xml') }
+
+      it { expect { array }.to raise_error(NoMethodError, /undefined method `\[\]'/) }
+    end
+
     context 'non existing file' do
       let(:filepath) { 'asdf1234.xml' }
 
-      it 'raises an error' do
-        expect { array }.to raise_error(Errno::ENOENT, /no such file or directory/i)
-      end
+      it { expect { array }.to raise_error(Errno::ENOENT, /no such file or directory/i) }
     end
   end
 end
