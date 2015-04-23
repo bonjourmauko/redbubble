@@ -5,4 +5,7 @@ AllCops:
     - bin/**/*
     - exe/**/*
 
+RSpec/DescribeClass:
+  Enabled: false
+
 inherit_from: .rubocop_todo.yml

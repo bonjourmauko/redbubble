@@ -1,14 +1,8 @@
-begin
-  require 'coveralls'
-  Coveralls.wear!
-rescue LoadError
-end
-
 require 'rubygems'
 require 'bundler'
 Bundler.setup :default, :test
 
-Dir[File.expand_path('spec/support/**/*.rb')].each { |f| require f }
+Dir[File.expand_path(File.join('spec', 'support', '**', '*.rb'))].each { |f| require f }
 
 require 'redbubble'
 
