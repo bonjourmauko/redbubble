@@ -1,27 +1,44 @@
 describe Redbubble::Parser do
   describe '.parse' do
-    subject(:array) { described_class.parse(filepath) }
+    let(:works) { described_class.parse(filepath) }
 
     context 'valid xml file' do
       let(:filepath) { file('works.xml') }
 
-      it { is_expected.to be_a(Array) }
-      it { expect(array.first).to be_a(Hash) }
-      it { expect(array.first).to include('urls') }
-      it { expect(array.first['exif']).to include('make') }
-      it { expect(array.first['exif']).to include('model') }
+      context 'works' do
+        subject { works }
+
+        it { is_expected.to be_a(Array) }
+        its(:size) { is_expected.to eq(14) }
+      end
+
+      context 'work' do
+        subject(:work) { works.first }
+
+        it { is_expected.to be_a(described_class::Work) }
+        its(:url) { is_expected.to eq('http://ih1.redbubble.net/work.31820.1.flat,135x135,075,f.jpg') }
+
+        describe '//exif' do
+          subject(:exif) { work.exif }
+
+          it { is_expected.to be_a(described_class::Exif) }
+          its(:make) { is_expected.to eq('NIKON CORPORATION') }
+          its(:model) { is_expected.to eq('NIKON D80') }
+        end
+      end
     end
 
     context 'invalid xml file' do
       let(:filepath) { file('bananas.xml') }
+      subject { works }
 
-      it { expect { array }.to raise_error(NoMethodError, /undefined method `\[\]'/) }
+      its(:size) { is_expected.to eq(0) }
     end
 
     context 'non existing file' do
       let(:filepath) { 'asdf1234.xml' }
 
-      it { expect { array }.to raise_error(Errno::ENOENT, /no such file or directory/i) }
+      it { expect { works }.to raise_error(Errno::ENOENT, /no such file or directory/i) }
     end
   end
 end

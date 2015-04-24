@@ -1,7 +1,11 @@
+require 'redbubble/parser/exif'
+require 'redbubble/parser/work'
+require 'redbubble/parser/root'
+
 module Redbubble
-  class Parser < Nori
+  class Parser
     def self.parse(filepath)
-      new.parse(File.read(filepath))['works']['work']
+      Root.parse(File.read(filepath)).works
     end
   end
 end
