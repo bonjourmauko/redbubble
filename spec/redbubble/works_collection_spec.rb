@@ -23,5 +23,7 @@ describe Redbubble::WorksCollection do
     it { expect(collection.where(model: 'FinePix S6500fd').count).to eq(1) }
     it { expect(collection.where(model: nil).count).to eq(2) }
     it { expect(collection.where(make: 'Canon', model: 'Canon EOS 20D').count).to eq(1) }
+    it { expect(collection.where(make: 'Carlton', model: 'Draught').count).to eq(0) } # :(
+    it { expect { collection.where(type: 'Beer') }.to raise_exception(NoMethodError, /undefined method/) }
   end
 end

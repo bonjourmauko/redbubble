@@ -10,9 +10,8 @@ module Redbubble
       order(all.map { |work| work.exif.send(attribute) }.uniq)
     end
 
-    def where(**filters)
-      filters.inject([]) do |result, filter|
-        result = all if result.empty?
+    def where(filters = {})
+      filters.each_with_object(all) do |filter, result|
         result.select! { |work| work.exif.send(filter.first) == filter.last }
       end
     end
