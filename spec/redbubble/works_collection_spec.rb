@@ -12,11 +12,16 @@ describe Redbubble::WorksCollection do
     it { expect(collection.limit(:all, 5)[4]).to eq(collection.all[4]) }
   end
 
-  describe '#makes' do
-    its(:makes) { is_expected.to eq(makes) }
+  describe '#pluck' do
+    it { expect(collection.pluck(:make)).to eq(makes) }
+    it { expect(collection.pluck(:model)).to eq(models) }
   end
 
-  describe '#models' do
-    its(:models) { is_expected.to eq(models) }
+  describe '#where' do
+    it { expect(collection.where(make: 'LEICA').count).to eq(5) }
+    it { expect(collection.where(make: nil).count).to eq(2) }
+    it { expect(collection.where(model: 'FinePix S6500fd').count).to eq(1) }
+    it { expect(collection.where(model: nil).count).to eq(2) }
+    it { expect(collection.where(make: 'Canon', model: 'Canon EOS 20D').count).to eq(1) }
   end
 end
