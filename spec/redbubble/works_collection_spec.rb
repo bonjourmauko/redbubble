@@ -4,6 +4,8 @@ describe Redbubble::WorksCollection do
   let(:models) { ['Canon EOS 20D', 'Canon EOS 400D DIGITAL', 'D-LUX 3', 'DMC-FZ30', 'FinePix S6500fd', 'NIKON D80', 'SLP1000SE', nil] }
   subject(:collection) { described_class.new(works) }
 
+  it { is_expected.to respond_to(:collection) }
+
   describe '.new' do
     its(:all) { is_expected.to eq(works) }
   end

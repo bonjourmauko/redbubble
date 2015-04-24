@@ -1,4 +1,6 @@
 module Redbubble
+  Collection = Struct.new(:collection)
+
   class WorksCollection < Collection
     alias_method :all, :collection
 
