@@ -1,6 +1,22 @@
 describe Redbubble::Parser do
-  describe '.parse' do
-    let(:works) { described_class.parse(filepath) }
+  describe '.new' do
+    subject(:parser) { described_class.new(filepath) }
+
+    context 'existing file' do
+      let(:filepath) { file('works.xml') }
+
+      it { expect { parser }.not_to raise_error }
+    end
+
+    context 'non existing file' do
+      let(:filepath) { 'asdf1234.xml' }
+
+      it { expect { parser }.to raise_error(Errno::ENOENT, /no such file or directory/i) }
+    end
+  end
+
+  describe '#parse' do
+    let(:works) { described_class.new(filepath).parse }
 
     context 'valid xml file' do
       let(:filepath) { file('works.xml') }
@@ -33,12 +49,6 @@ describe Redbubble::Parser do
       subject { works }
 
       its(:size) { is_expected.to eq(0) }
-    end
-
-    context 'non existing file' do
-      let(:filepath) { 'asdf1234.xml' }
-
-      it { expect { works }.to raise_error(Errno::ENOENT, /no such file or directory/i) }
     end
   end
 end

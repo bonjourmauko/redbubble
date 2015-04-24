@@ -4,8 +4,12 @@ require 'redbubble/parser/root'
 
 module Redbubble
   class Parser
-    def self.parse(filepath)
-      Root.parse(File.read(filepath)).works
+    def initialize(filepath)
+      @file = File.read(filepath)
+    end
+
+    def parse
+      Root.parse(@file).works
     end
   end
 end
