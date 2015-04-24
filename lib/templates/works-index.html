@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{ TITLE GOES HERE }}</title>
+  <title>Index</title>
   <style type="text/css">
     nav {
       margin: 10px;
@@ -10,10 +10,14 @@
 </head>
 <body>
   <header>
-    <h1>{{ TITLE GOES HERE }}</h1>
+    <h1>Index</h1>
 
     <nav>
-      {{ NAVIGATION GOES HERE }}
+      <ul>
+        <% collection.pluck(:make).each_with_index do |make, index| %>
+          <li> <a href='make-<%= index %>.html'><%= make || 'Unknown' %></a></li>
+        <% end %>
+      </ul>
     </nav>
   </header>
 

@@ -2,6 +2,10 @@ module Helpers
   def file(filename)
     File.join('spec', 'fixtures', 'files', filename)
   end
+
+  def templates(filename)
+    File.join('lib', 'templates', filename)
+  end
 end
 
 RSpec.configure do |config|
