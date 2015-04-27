@@ -14,13 +14,19 @@
 
     <nav>
       <ul>
-        <% collection.pluck(:make).each_with_index do |make, index| %>
-          <li><a href='make-<%= index %>.html'><%= make || 'Unknown' %></a></li>
+        <% view.makes.each do |make| %>
+          <li><a href="<%= make.href %>"><%= make.name %></a></li>
         <% end %>
       </ul>
     </nav>
   </header>
 
-  {{ THUMBNAIL IMAGES GO HERE }}
+  <main>
+    <ul>
+      <% view.limit(:all, 10).each do |work| %>
+        <li><img src="<%= work.thumbnail %>"></li>
+      <% end %>
+    </ul>
+  </main>
 </body>
 </html>

@@ -21,11 +21,26 @@ module Redbubble
     desc 'htmlify', "Creates a set of static HTML files from a Redbubble's XML file."
 
     def htmlify
-      xml        = File.read(options[:filepath])
-      works      = Work.new(xml).parse.each { |work| Decorator.new(work) }
-      works
+      works    = Redbubble::Model::Work.parse(file)
+      view     = Redbubble::View::Works.new(works)
+      template = File.read(File.join('lib', 'redbubble', 'template', 'works.html'))
+      rendered = Redbubble::Renderer.new(view, template).render
+
+      File.open(File.join(outpath, 'index.html'), 'w+') do |f|
+        f.write(rendered)
+      end
     end
 
     default_task :htmlify
+
+    private
+
+    def file
+      File.read(File.expand_path(options[:filepath]))
+    end
+
+    def outpath
+      File.expand_path(options[:output])
+    end
   end
 end
