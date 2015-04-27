@@ -1,5 +1,5 @@
 module Redbubble
-  class Parser
+  module Model
     class Exif
       include SAXMachine
 

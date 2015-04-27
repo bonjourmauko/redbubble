@@ -1,7 +1,7 @@
 module Redbubble
   Renderer = Struct.new(:collection, :template)
 
-  class WorksRenderer < Renderer
+  class Renderer
     alias_method :object, :collection
 
     def render

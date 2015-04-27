@@ -1,6 +1,6 @@
 module Helpers
   def file(filename)
-    File.join('spec', 'fixtures', 'files', filename)
+    File.open(File.join('spec', 'fixtures', 'files', filename))
   end
 
   def templates(filename)

@@ -21,8 +21,9 @@ module Redbubble
     desc 'htmlify', "Creates a set of static HTML files from a Redbubble's XML file."
 
     def htmlify
-      works      = Parser.new(options[:filepath]).parse
-      collection = WorksCollection.new(works)
+      xml        = File.read(options[:filepath])
+      works      = Work.new(xml).parse.each { |work| Decorator.new(work) }
+      works
     end
 
     default_task :htmlify

@@ -15,7 +15,7 @@
     <nav>
       <ul>
         <% collection.pluck(:make).each_with_index do |make, index| %>
-          <li> <a href='make-<%= index %>.html'><%= make || 'Unknown' %></a></li>
+          <li><a href='make-<%= index %>.html'><%= make || 'Unknown' %></a></li>
         <% end %>
       </ul>
     </nav>
