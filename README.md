@@ -5,6 +5,8 @@
 
 Redbubble is a Ruby CLI to generate browsable html files from Redbubble's **works** XML files.
 
+![Interface](https://github.com/maukoquiroga/redbubble/raw/master/screenshots/index.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -29,6 +31,8 @@ Run:
     $ redbubble -f input.xml -o output
 
 Both arguments are required. You can get a copy of `works.xml` from Redbubble™. As for `output`, it should be a path and not a file, as multiple HTML files are created in batch.
+
+![Usage](https://github.com/maukoquiroga/redbubble/raw/master/screenshots/terminal.png)
 
 
 ## Contributing
