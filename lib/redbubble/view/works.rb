@@ -20,16 +20,14 @@ module Redbubble
         pluck(:thumbnail)
       end
 
-      def limit(method, n)
-        send(method)[0..(n - 1)]
-      end
-
       def where(filters = {})
-        filters.each_with_object(all) do |filter, result|
-          result.select! do |work|
-            work.send(filter.first).name == filter.last
+        self.class.new(
+          filters.each_with_object(all) do |filter, result|
+            result.select! do |work|
+              work.send(filter.first).name == filter.last
+            end
           end
-        end
+        )
       end
 
       private

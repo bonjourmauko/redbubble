@@ -6,10 +6,6 @@ describe Redbubble::View::Works do
     its(:all) { is_expected.to eq(works) }
   end
 
-  describe '#limit' do
-    it { expect(view.limit(:all, 5)[4]).to eq(view.all[4]) }
-  end
-
   describe '#thumbnails' do
     it { expect(view.thumbnails.count).to eq(14) }
   end

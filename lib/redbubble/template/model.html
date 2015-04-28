@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Index</title>
+  <title><%= view.first.model.name %></title>
   <style type="text/css">
     nav {
       margin: 10px;
@@ -10,13 +10,12 @@
 </head>
 <body>
   <header>
-    <h1>Index</h1>
+    <h1><%= view.first.model.name %></h1>
 
     <nav>
       <ul>
-        <% view.makes.each do |make| %>
-          <li><a href="<%= make.href %>"><%= make.name %></a></li>
-        <% end %>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="<%= view.first.make.href %>"><%= view.first.make.name %></a></li>
       </ul>
     </nav>
   </header>

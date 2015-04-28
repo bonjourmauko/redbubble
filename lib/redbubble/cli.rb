@@ -23,7 +23,7 @@ module Redbubble
     def htmlify
       works    = Redbubble::Model::Work.parse(file)
       view     = Redbubble::View::Works.new(works)
-      template = File.read(File.join('lib', 'redbubble', 'template', 'works.html'))
+      template = File.read(File.join('lib', 'redbubble', 'template', 'index.html'))
       rendered = Redbubble::Renderer.new(view, template).render
 
       File.open(File.join(outpath, 'index.html'), 'w+') do |f|
