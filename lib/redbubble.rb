@@ -1,4 +1,5 @@
 require 'erb'
+require 'delegate'
 require 'sax-machine'
 require 'redbubble/cli'
 require 'redbubble/model/exif'
