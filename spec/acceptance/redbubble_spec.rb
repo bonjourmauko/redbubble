@@ -1,9 +1,13 @@
 describe 'redbubble' do
-  context 'generates the HTML files' do
-    # Test actualy writing to filesystem .
-    xit 'works' do
-      run_simple 'redbubble'
-      expect(all_output).to match(/success/)
+  context 'works' do
+    it 'generates the HTML files' do
+      run_simple("redbubble -f #{filepath('works.xml')} -o tmp")
+      check_file_presence([/tmp\/index/, /tmp\/make/, /tmp\/model/])
+    end
+
+    it 'says something nice to the user' do
+      run_simple("redbubble -f #{filepath('works.xml')} -o tmp")
+      expect(all_output).to match(/yeeah boi/i)
       assert_exit_status(0)
     end
   end
@@ -22,7 +26,7 @@ describe 'redbubble' do
     end
 
     it 'without output' do
-      run_simple("redbubble -f #{file('works.xml')}", false)
+      run_simple('redbubble -f ananas.yml', false)
       expect(all_output).to match(/no value provided for.+--output/i)
       expect(last_exit_status).to eq(1)
     end

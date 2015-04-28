@@ -21,22 +21,46 @@ module Redbubble
     desc 'htmlify', "Creates a set of static HTML files from a Redbubble's XML file."
 
     def htmlify
-      works    = Redbubble::Model::Work.parse(file)
-      view     = Redbubble::View::Works.new(works)
-      template = File.read(File.join('lib', 'redbubble', 'template', 'index.html'))
-      rendered = Redbubble::Renderer.new(view, template).render
+      parsed   = Redbubble::Model::Work.parse(file)
+      works    = Redbubble::View::Works.new(parsed)
 
-      File.open(File.join(outpath, 'index.html'), 'w+') do |f|
-        f.write(rendered)
+      write(works, template('index.html'), 'index.html')
+
+      works.makes.each do |make|
+        makes = Redbubble::View::Works.new(parsed).where(make: make.name)
+
+        write(makes, template('make.html'), make.href)
+
+        makes.models.each do |model|
+          models = Redbubble::View::Works.new(parsed).where(make: make.name).where(model: model.name)
+
+          write(models, template('model.html'), model.href)
+        end
       end
+
+      puts 'Yeeah Boi!!!'
     end
 
     default_task :htmlify
 
     private
 
+    def write(view, template, output)
+      File.open(File.join(outpath, output), 'w+') do |file|
+        file.write(rendered(view, template))
+      end
+    end
+
     def file
       File.read(File.expand_path(options[:filepath]))
+    end
+
+    def rendered(view, template)
+      Redbubble::Renderer.new(view, template).render
+    end
+
+    def template(filename)
+      File.read(File.join('lib', 'redbubble', 'template', filename))
     end
 
     def outpath

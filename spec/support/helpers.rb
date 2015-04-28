@@ -1,6 +1,10 @@
 module Helpers
+  def filepath(filename)
+    File.join('spec', 'fixtures', 'files', filename)
+  end
+
   def file(filename)
-    File.read(File.join('spec', 'fixtures', 'files', filename))
+    File.read(filepath(filename))
   end
 
   def templates(filename)

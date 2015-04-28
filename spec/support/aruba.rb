@@ -6,13 +6,14 @@ RSpec.configure do |config|
 
   config.before(:each) do
     restore_env
-    clean_current_dir
 
     if RUBY_PLATFORM =~ /java/ || defined?(Rubinius)
       @aruba_timeout_seconds = 60
     else
       @aruba_timeout_seconds = 10
     end
+
+    @dirs = ['.']
   end
 end
 

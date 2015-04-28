@@ -4,7 +4,7 @@ module Redbubble
       attr_reader :all
 
       def initialize(works)
-        @all = works.map { |work| Work.new(work) }
+        @all = works.map { |work| Redbubble::View::Work.new(work) }
         super
       end
 
