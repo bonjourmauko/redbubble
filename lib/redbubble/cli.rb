@@ -21,20 +21,9 @@ module Redbubble
     desc 'htmlify', "Creates a set of static HTML files from a Redbubble's XML file."
 
     def htmlify
-      parsed   = Redbubble::Model::Work.parse(file)
-      works    = Redbubble::View::Works.new(parsed)
-
-      write(works, template('index.html'), 'index.html')
-
-      works.makes.each do |make|
-        makes = Redbubble::View::Works.new(parsed).where(make: make.name)
-
-        write(makes, template('make.html'), make.href)
-
-        makes.models.each do |model|
-          models = Redbubble::View::Works.new(parsed).where(make: make.name).where(model: model.name)
-
-          write(models, template('model.html'), model.href)
+      write(works, template('index.html'), 'index.html').makes.each do |make|
+        write(works.where(make: make.name), template('make.html'), make.href).models.each do |model|
+          write(works.where(make: make.name, model: model.name), template('model.html'), model.href)
         end
       end
 
@@ -48,7 +37,15 @@ module Redbubble
     def write(view, template, output)
       File.open(File.join(outpath, output), 'w+') do |file|
         file.write(rendered(view, template))
-      end
+      end && view
+    end
+
+    def works
+      Redbubble::View::Works.new(parsed)
+    end
+
+    def parsed
+      Redbubble::Model::Work.parse(file)
     end
 
     def file
