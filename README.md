@@ -1,6 +1,6 @@
 # Redbubble
 
-[![Gem Version](https://badge.fury.io/rb/github_cli.svg)](https://rubygems.org/gems/redbubble)
+[![Gem Version](https://badge.fury.io/rb/redbubble.svg)](http://badge.fury.io/rb/redbubble)
 [![Build Status](https://travis-ci.org/maukoquiroga/redbubble.svg?branch=master)](https://travis-ci.org/maukoquiroga/redbubble)
 [![Dependency Status](https://gemnasium.com/maukoquiroga/redbubble.svg)](https://gemnasium.com/maukoquiroga/redbubble)
 [![Coverage Status](https://coveralls.io/repos/maukoquiroga/redbubble/badge.svg)](https://coveralls.io/r/maukoquiroga/redbubble)
