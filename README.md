@@ -5,6 +5,7 @@
 [![Dependency Status](https://gemnasium.com/maukoquiroga/redbubble.svg)](https://gemnasium.com/maukoquiroga/redbubble)
 [![Coverage Status](https://coveralls.io/repos/maukoquiroga/redbubble/badge.svg)](https://coveralls.io/r/maukoquiroga/redbubble)
 [![Code Climate](https://codeclimate.com/github/maukoquiroga/redbubble/badges/gpa.svg)](https://codeclimate.com/github/maukoquiroga/redbubble)
+[![Inline docs](http://inch-ci.org/github/maukoquiroga/redbubble.svg?branch=master)](http://inch-ci.org/github/maukoquiroga/redbubble)
 
 Redbubble is a Ruby CLI to generate browsable html files from Redbubble's **works** XML files.
 
